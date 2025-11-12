@@ -1,0 +1,582 @@
+.header {
+    background-color: #034521;
+    padding: 2rem;
+    text-align: center;
+    color: white;
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.navbar ul li a, .logout-button{
+    color: white;
+}
+
+#logout a {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: red;
+    border: 1px solid red;
+    border-radius: 0.5rem;
+}
+
+#logout a:hover {
+    background-color: red;
+    color: white;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#user-i a i {
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#user-i a i:hover {
+    animation: rotate 1s linear infinite;
+    color: #537107;
+}
+
+.footer {
+    color: #034521;
+    padding: 1rem;
+    text-align: center;
+    background-color: rgb(235, 233, 233);
+    /* position: fixed; */
+    width: 100%;
+    bottom: 0;
+}
+
+.content {
+    padding-bottom: 3rem;  
+}
+
+/* Dashboard style */
+
+    .dash-content {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    width: 100%;
+}
+
+        .dash {
+            background-color: #e0f2e9;
+            /* margin-bottom: 2rem; */
+            border-radius: 8px;
+        }
+
+        .dash h2 {
+            color: #034521;
+        }
+        .dash p {
+            color: #056634;
+        }
+
+    .card {
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            border: none;
+        }
+        
+        
+        .stat-card {
+            text-align: center;
+           padding: 0.8rem;
+        }
+        
+        .stat-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .stat-card .number {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .card i {
+            color: #034521;
+        }
+        
+        .main {
+           display: grid;
+            grid-template-columns: 250px 1fr;
+            padding: 1.2rem;
+        }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .table th {
+        background-color: #034521;
+        color: white;
+    
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #034521;
+    }
+
+    .table tbody tr:hover {
+        background-color: #027e3a;
+        color: white;
+    }
+
+    .text {
+        color: #034521;
+        font-weight: bold;
+        margin-top: 0;
+        margin-bottom: 2rem;
+        text-align: center;
+}
+
+.table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+}
+
+#btn-delete {
+    background-color: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+}
+
+#delete-table {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.etudiant-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+}
+
+.etudiant-btn {
+    background-color: #039846;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#etudiants-container {
+    background-color: #e0f2e9;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 0;
+}
+
+/* Formulaire d'ajout d'étudiants */
+
+.add-etudiants form {
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    padding: 30px;
+    margin: 80px auto;
+}
+
+.add-etudiants h2 {
+    color: #014e30;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #014e30;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #014e31d0;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #014e30;
+}
+
+button.register-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #039846;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-groupetu {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-groupetu .form-group {
+    flex: 1;
+}
+
+/* style du formulaire de modification */
+
+.edit-etudiants form {
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    padding: 30px;
+    margin: 80px auto;
+}
+
+.edit-etudiants h2 {
+    color: #014e30;
+    text-align: center;
+}
+
+.edit-etudiants form select,
+.edit-etudiants form input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #014e31d0;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+
+
+/* style de la partie paiement le formulaire */
+
+.add-paiements form {
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    padding: 30px;
+    margin: 80px auto;
+}
+
+.add-paiements h2 {
+    color: #014e30;
+    text-align: center;
+}
+
+.add-paiements form select,
+.add-paiements form input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #014e31d0;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+
+
+/* Style de la page paiements.edit */
+
+.edit-paiements form {
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    padding: 30px;
+    margin: 80px auto;
+}
+
+.edit-paiements h2 {
+    color: #014e30;
+    text-align: center;
+}
+
+.edit-paiements form select,
+.edit-paiements form input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #014e31d0;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+button.update-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #039846;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Style de composant paiement */
+
+
+
+/* Style du recu */
+
+.receipt-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.receipt-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.receipt-details {
+    margin-bottom: 2rem;
+}
+
+.receipt-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+.receipt-content table, .receipt-content th, .receipt-content td {
+    border: 1px solid #ccc;
+}
+
+.receipt-content th, .receipt-content td {
+    padding: 0.75rem;
+    text-align: left;
+}
+
+
+
+.actions {
+    display: flex;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+#download-btn, #print-btn, #new-payment-btn {
+    margin-right: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#download-btn {
+    background-color: #027e3a;
+}
+
+#print-btn {
+    background-color: #1458de;
+}
+
+#new-payment-btn {
+    background-color: #469803;
+}
+
+#download-btn:hover {
+    color: #027e3a;
+    background-color: white;
+    border: 1px solid #027e3a;
+}
+
+#print-btn:hover {
+    color: #1458de;
+    background-color: white;
+    border: 1px solid #1458de;
+}
+
+#new-payment-btn:hover {
+    color: #469803;
+    background-color: white;
+    border: 1px solid #469803;
+}
+
+.receipt-footer {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.receipt-footer p {
+    margin: 0.3rem 0;
+    font-size: 1.1rem;
+}
+
+.receipt-footer p strong {
+    color: #034521;
+    font-size: 1.2rem;
+}
+
+#receipt-total {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    background-color: white;
+    padding: 0.5rem;
+}
+
+.info {
+    background-color: white;
+    color: #034521;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #bce8f1;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.info-box {
+    background-color: #d9edf7;
+    color: #31708f;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #bce8f1;
+    text-align: center;
+    font-weight: bold;
+}
+
+.info-box p {
+    margin: 0;
+}
+
+/* Style de la page statistique */
+
+.progress-container {
+    margin: 10px 0;
+}
+.progress {
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.progress-bar {
+    transition: width 0.6s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+.badge {
+    font-size: 11px;
+}
+
+/* Style de la page besoin */
+
+.besoin-all {
+    display: flex;
+    gap: 1rem;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.all {
+    background-color: white;
+    border-radius: 2rem;
+    padding: 0.6rem;
+}
+
+.all h4 {
+    color: #034521;
+    font-size: 1.2rem;
+}
+
+.all-icone {
+    font-size: 1.5rem;
+    margin: 1rem;
+}
+
+.row-besoin {
+    background-color: #e0f2e9;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+}
+
+#besoin-title {
+    margin-top: 1rem;
+    color: #034521;
+}
+
+.details-besoin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.details-besoin h4 {
+    font-size: 1.8rem;
+    color: #034521;
+}
+
+.list-besoin-class {
+    display: flex;
+    background-color: #469803;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.list-besoin {
+    background-color: white;
+    border-radius: 8px;
+    flex: 1;
+}
