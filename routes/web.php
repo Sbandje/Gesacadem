@@ -13,6 +13,9 @@ use App\Http\Controllers\BesoinController;
 Route::get('/', [UserController::class, 'login'])->name('user.login');
 Route::post('/login', [UserController::class, 'loginPost'])->name('user.login.post');
 
+// Route pour la déconnexion
+Route::get('/logout', [UserController::class, 'logout'])->name('user.logout');
+
 // Route pour les pages
 
 Route::get('/dashboard', [PageController::class, 'dashboard'])->name('front.dashboard');

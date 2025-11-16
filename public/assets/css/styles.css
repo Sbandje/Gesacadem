@@ -1,12 +1,16 @@
 .header {
-    background-color: #034521;
-    padding: 2rem;
+    background-color: white;
+    padding: 2rem 0rem 2rem 0rem;
     text-align: center;
-    color: white;
-    position: sticky;
+    color: #034521;
+    position: relative;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 2rem;
+    height: 80px;
 }
+
+
 
 .navbar ul {
     list-style-type: none;
@@ -16,7 +20,11 @@
     gap: 1rem;
 }
 
-.navbar ul li a, .logout-button{
+.navbar ul li a {
+    color: #014e30;
+}
+
+ .logout-button{
     color: white;
 }
 
@@ -169,11 +177,16 @@
     align-items: center;
 }
 
+/* style etudiant */
 .etudiant-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-   
+    margin-bottom: 1rem;
+}
+
+.etu-content {
+    margin-left: 1rem;
 }
 
 .etudiant-btn {
@@ -190,6 +203,19 @@
     padding: 2rem;
     border-radius: 8px;
     margin-top: 0;
+}
+
+.etudiants-list {
+    margin-left: 1rem;
+}
+
+.etudiants-list h3 {
+    color: #034521;
+    margin-bottom: 1rem;
+    text-align: center;
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
 }
 
 /* Formulaire d'ajout d'étudiants */
@@ -356,8 +382,113 @@ button.update-btn {
     transition: background-color 0.3s;
 }
 
+/* Style du cumul de paiement */
+.cumul-pay {
+    margin-left: 1rem;
+}
+
+.actions-button {
+    display: flex;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    gap: 1rem;
+    margin-left: 1rem;
+}
+
+#pdf-sta {
+    margin-right: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #b63e16;
+}
+
+#pdf-sta:hover {
+    color: #b63e16;
+    background-color: white;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+    border: 2px solid #b63e16;
+}
+
+#sta-det {
+    margin-right: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #1377ad;
+}
+
+#sta-det:hover {
+    color: #1377ad;
+    background-color: white;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+    border: 2px solid #1377ad;
+}
+
+.det-stat {
+    margin-left: 1rem;
+}
+
+
+.header-stat {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #034521;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+.fil-stat {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+#rese-btn {
+    background-color: #1377ad;
+    color: white;
+}
+
+#rese-btn:hover {
+    color: #1377ad;
+    background-color: white;
+    border: 2px solid #1377ad;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+}
+
+#filter-b {
+    background-color: #469803;
+    color: white;
+}
+
+#filter-b:hover {
+    color: #469803;
+    background-color: white;
+    border: 2px solid #469803;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+}
 /* Style de composant paiement */
 
+.table-etudiants {
+    margin-left: 1rem;
+}
+
+.table-etudiants h3 {
+    color: #034521;
+    margin-bottom: 1rem;
+    text-align: center;
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
 
 
 /* Style du recu */
@@ -579,4 +710,62 @@ button.update-btn {
     background-color: white;
     border-radius: 8px;
     flex: 1;
+}
+
+#eyes i{
+    background-color: transparent;
+    border: none;
+    color: #5f233c;
+    cursor: pointer;
+}
+
+#eyes i:hover {
+    color: white;
+    background-color: #5f233c;
+    border-radius: 50%;
+    padding: 0.3rem;
+}
+
+#editi i {
+    background-color: transparent;
+    border: none;
+    color: #1800b2;
+    cursor: pointer;
+}
+
+#editi i:hover {
+    color: white;
+    background-color: #1800b2;
+    border-radius: 50%;
+    padding: 0.3rem;
+}
+
+
+#btn-delete i {
+    color: red;
+}
+
+#btn-delete i:hover {
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+    padding: 0.3rem;
+}
+
+#invoice-table a{
+    margin: 0.5rem;
+}
+
+/* style de la page pdf pour le paiement */
+.pdf-paiement {
+    margin-left: 1rem;
+    background-color: #014e30;
+}
+.pdf-paiement h1 {
+    color: #034521;
+    margin-bottom: 1rem;
+    text-align: center;
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
 }

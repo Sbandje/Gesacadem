@@ -33,4 +33,10 @@ class Etudiant extends Model
     {
         return $this->hasMany(Paiement::class, 'etudiants_id');
     }
+
+    public function paiementsParNiveau($niveauId)
+    {
+        return $this->paiements()->where('niveaux_id', $niveauId)->get();
+    }
+
 }

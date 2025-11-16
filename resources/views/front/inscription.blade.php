@@ -15,10 +15,12 @@
                     <x-navbar/>
                 </div>
                 <div>
-                    <h2>Page d'Inscription des Étudiants</h2>
-                <p>
-                    Bienvenue sur la page d'inscription des étudiants. Ici, vous pouvez inscrire de nouveaux étudiants dans le système.
-                </p>
+                    <div class="etu-content">
+                        <div class="etudiant-title">
+                            <h2>Gestion des Inscriptions</h2>
+                            <a href="{{ route('etudiants.add') }}" class="etudiant-btn">Nouvelle Inscription</a>
+                        </div>
+                    </div>
 
                 <!-- afficher la liste des étudiants inscrits avec leurs paiements -->
                  <div class="etudiants-list">

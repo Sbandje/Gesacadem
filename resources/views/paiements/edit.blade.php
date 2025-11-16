@@ -28,10 +28,28 @@
                 @endforeach
             </select>
         </div>
+
         <div class="form-group">
-            <label for="montant">Montant</label>
-            <input type="number" id="montant" name="montant" value="{{ $paiement->montant }}" required>
+            <label for="niveaux_id">Niveau</label>
+            <select name="niveaux_id" id="niveaux_id" required>
+                @foreach($niveaux as $niveau)
+                    <option value="{{ $niveau->id }}" 
+                            data-montant="{{ $niveau->montant_fixe }}"
+                            {{ $paiement->niveaux_id == $niveau->id ? 'selected' : '' }}>
+                        {{ $niveau->libelle }} - {{ number_format($niveau->montant_fixe, 0, ',', ' ') }} FCFA
+                    </option>
+                @endforeach
+            </select>
         </div>
+
+        <div class="form-group">
+            <label for="montant">Montant payé (FCFA)</label>
+            <input type="number" step="0.01" id="montant" name="montant" value="{{ $paiement->montant }}" required>
+            <small>Montant total: {{ number_format($paiement->montant_total, 0, ',', ' ') }} FCFA | 
+                   Reste à payer: {{ number_format($paiement->reste_a_payer, 0, ',', ' ') }} FCFA</small>
+        </div>
+
+
         <div class="form-group">
             <label for="date_paiement">Date de paiement</label>
             <input type="date" id="date_paiement" name="date_paiement" value="{{ $paiement->date_paiement }}" required>
@@ -44,16 +62,22 @@
                 <option value="virement_bancaire" {{ $paiement->mode_paiement == 'virement_bancaire' ? 'selected' : '' }}>Virement</option>
             </select>
         </div>
-        <div class="form-group">
-            <label for="etat">Etat</label>
-            <select name="etat" id="etat">
-                <option value="partiel" {{ $paiement->etat == 'en_attente' ? 'selected' : '' }}>Partiel</option>
-                <option value="solde" {{ $paiement->etat == 'confirme' ? 'selected' : '' }}>Soldé</option>
-            </select>
-        </div>
         
         <button type="submit" class="btn btn-primary">Mettre à jour</button>
     </form>
 </div>
+
+<script>
+    document.getElementById('niveaux_id').addEventListener('change', function() {
+        const selectedOption = this.options[this.selectedIndex];
+        const montantTotal = selectedOption.getAttribute('data-montant');
+        
+        if (montantTotal) {
+            // Mettre à jour l'info du montant total
+            document.querySelector('small').innerHTML = 
+                `Montant total: ${new Intl.NumberFormat('fr-FR').format(montantTotal)} FCFA`;
+        }
+    });
+</script>
 
 @endsection

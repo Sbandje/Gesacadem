@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('niveaux', function (Blueprint $table) {
             $table->id();
             $table->string('libelle')->unique();
+            $table->decimal('montant_fixe', 10, 2);
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

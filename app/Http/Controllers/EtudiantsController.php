@@ -9,11 +9,6 @@ use Illuminate\Http\Request;
 
 class EtudiantsController extends Controller
 {
-    public function etudiants()
-{
-    $etudiants = Etudiant::all();
-    return view('front.etudiants', compact('etudiants')); 
-}
 
     public function create()
     {

@@ -14,7 +14,12 @@
                 </div>
                 
                 <div class="etu-content">
-                    <x-etudiants :etudiants="$etudiants"/>
+                    <form action="{{ route('user.logout') }}" method="POST" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa-solid fa-sign-out-alt"></i> Déconnexion
+                        </button>
+                    </form>
                 </div>
 
                 <div class="footer">

@@ -7,7 +7,7 @@
         <nav class="navbar">
             <ul class="nav-links">
                 <li id="user-i"><a href="/"><i class="fa-solid fa-user"></i></a></li>
-                <li id="logout"><a href="/about">Deconnexion</a></li>
+                <li id="logout"><a href="{{ route('user.logout') }}">Deconnexion</a></li>
             </ul>
         </nav>
     </div>

@@ -10,7 +10,17 @@ class Niveau extends Model
 
     protected $fillable = [
         'libelle',
+        'montant_fixe',
+        'description',
     ];
+
+    protected $casts = [
+        'montant_fixe' => 'decimal:2',
+    ];
+
+    public function paiements() {
+        return $this->hasMany(Paiement::class, 'niveaux_id');
+    }
 
     public function etudiants()
     {

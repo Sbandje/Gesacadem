@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Etudiant;
 use App\Models\Paiement;
+use App\Models\Niveau;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -15,40 +16,50 @@ class PaiementController extends Controller
     {
         $paiements = Paiement::all();
         $etudiants = Etudiant::all(); 
-        return view('paiements.create', compact('paiements', 'etudiants'));
+        $niveaux =Niveau::all();
+        return view('paiements.create', compact('paiements', 'etudiants', 'niveaux'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'etudiants_id' => 'required|exists:etudiants,id',
+            'niveaux_id' => 'required|exists:niveaux,id',
             'montant' => 'required|numeric|min:0',
-            'montant_total' => 'numeric|min:0',
             'date_paiement' => 'required|date',
             'mode_paiement' => 'required|in:espece,carte_bancaire,virement_bancaire',
-            'etat' => 'required|in:partiel,solde,annule',
+            
         ]);
 
-        $paiements = Paiement::create($request->all());
-        
-
-        // Calculer le reste à payer
-        $montantTotal = $validated['montant_total'];
+        // Récupérer le niveau et son montant fixe
+        $niveau = Niveau::findOrFail($validated['niveaux_id']);
+        $montantTotal = $niveau->montant_fixe;
         $montantPaye = $validated['montant'];
-        $resteAPayer = $montantTotal - $montantPaye;
-        
 
+        // Calculer le total déjà payé pour cet étudiant dans ce niveau
+        $totalDejaPaye = Paiement::where('etudiants_id', $validated['etudiants_id'])
+                                ->where('niveaux_id', $validated['niveaux_id'])
+                                ->sum('montant');
+        
+        $totalApresPaiement = $totalDejaPaye + $montantPaye;
+        $resteAPayer = $montantTotal - $totalApresPaiement;
 
         // Déterminer le statut
-        $statut = $resteAPayer <= 0 ? 'soldé' : 'partiel';
+        $statut = $resteAPayer <= 0 ? 'solde' : 'partiel';
 
-        // Ajouter les champs calculés aux données validées
-        $validated['reste_a_payer'] = max(0, $resteAPayer); // Éviter les valeurs négatives
-        $validated['etat'] = $statut;
+        // Créer le paiement
+        $paiement = Paiement::create([
+            'etudiants_id' => $validated['etudiants_id'],
+            'niveaux_id' => $validated['niveaux_id'],
+            'montant' => $montantPaye,
+            'montant_total' => $montantTotal,
+            'date_paiement' => $validated['date_paiement'],
+            'mode_paiement' => $validated['mode_paiement'],
+            'reste_a_payer' => max(0, $resteAPayer),
+            'etat' => $statut,
+        ]);
 
-
-        // Rediriger vers le reçu
-        return redirect()->route('receipt.show', $paiements->id)
+        return redirect()->route('receipt.show', $paiement->id)
             ->with('success', 'Paiement enregistré avec succès!');
     }
 
@@ -78,7 +89,7 @@ class PaiementController extends Controller
             'statut' => ($paiementExistant->reste_a_payer - $validated['montant_supplementaire']) <= 0 ? 'soldé' : 'partiel',
         ]);
 
-        // Mettre à jour le paiement existant (optionnel - selon votre logique métier)
+        // Mettre à jour le paiement existant avec le nouveau reste à payer et le statut
         $paiementExistant->update([
             'reste_a_payer' => max(0, $paiementExistant->reste_a_payer - $validated['montant_supplementaire']),
             'statut' => ($paiementExistant->reste_a_payer - $validated['montant_supplementaire']) <= 0 ? 'soldé' : 'partiel',
@@ -94,21 +105,46 @@ class PaiementController extends Controller
     {
         $paiement = Paiement::findOrFail($id);
         $etudiants = Etudiant::all(); 
-        return view('paiements.edit', compact('paiement', 'etudiants'));
+        $niveaux = Niveau::all();
+        return view('paiements.edit', compact('paiement', 'etudiants', 'niveaux'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'etudiants_id' => 'required|exists:etudiants,id',
+            'niveaux_id' => 'required|exists:niveaux,id',
             'montant' => 'required|numeric',
             'date_paiement' => 'required|date',
             'mode_paiement' => 'required|in:espece,carte_bancaire,virement_bancaire',
-            'etat' => 'required|in:partiel,solde,annule',
         ]);
 
         $paiement = Paiement::findOrFail($id);
-        $paiement->update($request->all());
+        
+        // Récupérer le nouveau niveau et son montant
+        $niveau = Niveau::findOrFail($request->niveaux_id);
+        $montantTotal = $niveau->montant_fixe;
+
+        // Recalculer le total payé pour cet étudiant dans ce niveau (excluant le paiement actuel)
+        $totalDejaPaye = Paiement::where('etudiants_id', $request->etudiants_id)
+                                ->where('niveaux_id', $request->niveaux_id)
+                                ->where('id', '!=', $id)
+                                ->sum('montant');
+        
+        $totalApresPaiement = $totalDejaPaye + $request->montant;
+        $resteAPayer = $montantTotal - $totalApresPaiement;
+        $statut = $resteAPayer <= 0 ? 'solde' : 'partiel';
+
+        $paiement->update([
+            'etudiants_id' => $request->etudiants_id,
+            'niveaux_id' => $request->niveaux_id,
+            'montant' => $request->montant,
+            'montant_total' => $montantTotal,
+            'date_paiement' => $request->date_paiement,
+            'mode_paiement' => $request->mode_paiement,
+            'reste_a_payer' => max(0, $resteAPayer),
+            'etat' => $statut,
+        ]);
 
         return redirect()->route('front.paiement')->with('success', 'Paiement mis à jour avec succès.');
     }

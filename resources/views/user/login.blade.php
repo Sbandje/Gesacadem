@@ -1,8 +1,14 @@
 @extends('layouts.main')
 
 @section('content')
+   <div class="navbar_login">
+        <div class="log-nav">
+            <h1>Gesacadem</h1>
+            <p>Votre académie de langue à proximité</p>
+        </div>
+    </div>
+
     <div class="login-container">
-        <h2>Connexion</h2>
         @if($errors->any())
       <div class="alert alert-danger">
         <ul class="mb-0">
@@ -31,5 +37,9 @@
 
                 <button type="submit" class="login-btn">Se connecter</button>
         </form>
+    </div>
+
+    <div class="footer-login">
+      <p>&copy; 2025 Académie de Langues. Tous droits réservés.</p>
     </div>
 @endsection

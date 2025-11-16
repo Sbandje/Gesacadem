@@ -13,11 +13,16 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     padding: 30px 30px 30px 30px;
-    text-align: center;
     margin: 80px auto;
 }
         
-        
+    .navbar_login {
+        background-color: #014e30;
+        text-align: center;
+        color: white;
+        padding: 1rem 2rem;
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+    }    
 
 .login-container {
     padding: 30px;
@@ -35,9 +40,10 @@
         }
         
         .form-title {
-            font-size: 22px;
+            font-size: 2rem;
             margin-bottom: 20px;
             color: #014e30;
+            text-align: center;
         }
         
         .form-group {
@@ -97,4 +103,13 @@
 
 .login-btn:hover {
     background-color: #057146;
+}
+
+.footer-login {
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
+    font-size: 14px;
+    background-color: white;
+    padding: 10px 0;
 }

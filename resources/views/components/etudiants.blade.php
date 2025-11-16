@@ -9,11 +9,9 @@
             <div class="alert alert-success">{{ session('success')}}</div>
         @endif
 
-        @foreach($etudiants as $etudiant)
+        
                     <div class="table-etudiants">
-                        <form action="{{ route('etudiants.update', $etudiant->id) }}" method="post">
-                            @csrf
-                            @method('PUT')
+                        
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -31,9 +29,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <ul class="list-group">
+                                   
+                                        
                                         @foreach($etudiants as $etudiant)
-                                        <li  class="list-group-item">
                                             <tr>
                                                 <td>{{ $etudiant->nom }}</td>
                                                 <td>{{ $etudiant->prenom }}</td>
@@ -52,14 +50,13 @@
                                                     </form>
                                                 </td>
                                             </tr>
-                                        </li>
                                         @endforeach
-                                    </ul>
+                                    
                                 </tbody>
                             </table>
-                        </form>
+                        
                     </div>
-        @endforeach
+      
     </div>
 
 <script>

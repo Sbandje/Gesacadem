@@ -112,9 +112,9 @@
                                                 <br>
                                                 <small>
                                                     Étudiant: {{ $besoin->etudiant->nom }} {{ $besoin->etudiant->prenom }}
-                                                    | Priorité: <span class="badge bg-dark">{{ $besoin->priorite }}</span>
+                                                         Priorité: <span class="badge bg-dark">{{ $besoin->priorite }}</span>
                                                     @if($besoin->date_limite)
-                                                    | Échéance: {{ $besoin->date_limite->format('d/m/Y') }}
+                                                         Échéance: {{ $besoin->date_limite->format('d/m/Y') }}
                                                     @endif
                                                 </small>
                                                 <a href="{{ route('besoins.show', $besoin) }}" class="btn btn-sm btn-light float-end">

@@ -86,7 +86,6 @@
                     <a href="{{ route('paiements.create') }}" class="btn btn-primary" id="new-payment-btn">
                         <i class="fa-solid fa-plus"></i> Nouveau paiement
                     </a>
-                    <button onclick="window.print()">Imprimer</button>
                 </div>
 
             </aside>

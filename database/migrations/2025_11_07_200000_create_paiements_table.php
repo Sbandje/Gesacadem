@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('paiements', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('etudiants_id');
+            $table->unsignedBigInteger('niveaux_id');
             $table->decimal('montant', 10, 2);
             $table->decimal('montant_total', 10, 2)->default(200000);
             $table->date('date_paiement');
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->decimal('reste_a_payer', 10, 2)->default(0);
             $table->enum('etat', ['partiel', 'solde'])->default('partiel');
             $table->foreign('etudiants_id')->references('id')->on('etudiants')->onDelete('cascade');
+            $table->foreign('niveaux_id')->references('id')->on('niveaux')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,4 +35,6 @@ return new class extends Migration
         Schema::dropIfExists('paiements');
 
     }
+
+    
 };

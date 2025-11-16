@@ -178,7 +178,7 @@
                             </td>
                             <td>
                                 <span class="badge bg-{{ $besoin->couleur_statut }}">
-                                    {{ $besoin->icone_statut }} {{ $besoin->statut }}
+                                     {{ $besoin->statut }}
                                 </span>
                             </td>
                             <td>
@@ -192,31 +192,31 @@
                                 @if($besoin->date_limite)
                                 {{ $besoin->date_limite->format('d/m/Y') }}
                                 @if($besoin->est_urgent)
-                                <br><small class="text-danger">⚠ Dépassée</small>
+                                    <br><small class="text-danger"> Dépassée</small>
                                 @endif
                                 @else
-                                <span class="text-muted">-</span>
+                                    <span class="text-muted">-</span>
                                 @endif
                             </td>
                             <td>{{ $besoin->created_at->format('d/m/Y') }}</td>
                             <td>
-                                <div class="btn-group btn-group-sm">
+                                <div class="btn-group btn-group-sm gap-2">
                                     <a href="{{ route('besoins.show', $besoin) }}" 
-                                       class="btn btn-info" title="Voir">
-                                        
+                                       class=""  id="eyes" title="Voir">
+                                        <i class="fa-regular fa-eye"></i>
                                     </a>
                                     <a href="{{ route('besoins.edit', $besoin) }}" 
-                                       class="btn btn-warning" title="Modifier">
-                                        
+                                       class="" id="editi" title="Modifier">
+                                        <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                     <form action="{{ route('besoins.destroy', $besoin) }}" 
                                           method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" 
+                                        <button type="submit" class="" id="btn-delete"
                                                 title="Supprimer"
                                                 onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce besoin ?')">
-                                            
+                                            <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </form>
                                 </div>

@@ -3,7 +3,7 @@
 <div  class="etudiants-container">
         <div class="paiement_title">
             <div class="etudiant-title">
-                <h2>Liste des paiements</h2>
+                <h2>Gestion des paiements</h2>
                 <div class="paiemen">
                     <a href="{{ route('paiements.create')}}" class="etudiant-btn">Ajouter un paiement</a>
                     <a href="{{ route('statistiques.cumul') }}" class="etudiant-btn">Cumul par niveau</a>
@@ -16,6 +16,7 @@
         @endif
 
         <div class="table-etudiants">
+            <h3>Liste des paiements</h3>
             <table class="table">
                 <thead>
                     <tr>
@@ -26,11 +27,12 @@
                         <!-- <th>Progression Paiement</th> -->
                         <th>Etat</th>
                         <th>Actions</th>
+                        <th>Facture</th>
                     </tr>
                 </thead>
                 <tbody>
                     <ul class="list-group">
-                        @foreach($paiements as $paiement)
+                        @forelse($paiements as $paiement)
                         <li  class="list-group-item">
                             <tr>
                                 <td>{{ $paiement->etudiant->nom ?? 'inconnu' }}</td>
@@ -53,16 +55,24 @@
                                     @endif
                                 </td>
                                 <td id="delete-table">
-                                    <a href="{{ route('paiements.edit', $paiement->id) }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="{{ route('paiements.edit', $paiement->id) }}" class=""><i class="fa-solid fa-pen-to-square"></i></a>
                                     <form id="delete-form-{{ $paiement->id }}" action="{{ route('paiements.destroy', $paiement->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete({{ $paiement->id }})"><i class="fa-solid fa-trash"></i></button>
+                                        <button type="button" class="btn btn-sm btn-danger" id="btn-delete" onclick="confirmDelete({{ $paiement->id }})"><i class="fa-solid fa-trash"></i></button>
                                     </form>
+                                </td>
+                                <td id="invoice-table">
+                                    <a href="{{ route('receipt.print', $paiement->id) }}" class=""><i class="fa-solid fa-file-invoice"></i></a>
+                                    <a href="{{ route('receipt.download', $paiement->id) }}" class=""><i class="fa-solid fa-down-long"></i></a>
                                 </td>
                             </tr>
                         </li>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="6">Aucun paiement trouvé.</td>
+                            </tr>
+                        @endforelse
                     </ul>
                 </tbody>
             </table>

@@ -1,34 +1,46 @@
+@props([
+    'totalEtudiants' => 0,
+    'totalPaiements' => 0,
+    'besoinsEnAttente' => 0,
+    'recentEtudiants' => [],
+    'totalBesoins' => 0,
+    'besoinsUrgents' => [],
+    'recentPaiements' => [],
+])
+
 <div id="dashboard" class="content-section">
-
-
                     
 <div class="row mb-4">
     <h2 class="text">Tableau de bord</h2>
     <div class="col-md-3">
         <div class="card stat-card">
             <i class="fas fa-user-graduate"></i>
-            <div class="number">145</div>
+            <!-- afficher le total paiement -->
+
+            <div class="number" >{{ $totalEtudiants }}</div>
             <div class="label">Étudiants inscrits</div>
         </div>
     </div>
     <div class="col-md-3">
         <div class="card stat-card">
             <i class="fas fa-money-bill-wave"></i>
-            <div class="number">1200000 Frc CFA</div>
+            <div class="number">{{ number_format($totalPaiements, 0, ',', ' ') }}</div>
             <div class="label">Total des paiements</div>
         </div>
         </div>
         <div class="col-md-3">
             <div class="card stat-card">
                 <i class="fas fa-clock"></i>
-                <div class="number">12</div>
+                <div class="number">{{ $besoinsEnAttente  }}</div>
                 <div class="label">Besoins en attente</div>
             </div>
         </div>
     </div>
 
 </div>
-
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success')}}</div>
+        @endif
     <div>
         <div class="row">
             <div class="col-md-6">
@@ -58,24 +70,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Koutsouati Jonas</td>
-                                <td>Débutant</td>
-                                <td>2025-04-10</td>
-                                <td><a href="#" class="icone"><i class="fa-solid fa-info"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>Adjakpa Petro</td>
-                                <td>Intermédiaire</td>
-                                <td>2025-06-11</td>
-                                <td><a href="#" class="icone"><i class="fa-solid fa-info"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>Afgbe Irach</td>
-                                <td>Avancé</td>
-                                <td>2024-06-12</td>
-                                <td><a href="#" class="icone"><i class="fa-solid fa-info"></i></a></td>
-                            </tr>
+                            
+                                 @forelse($recentEtudiants as $etudiant)
+                               <tr>
+                                   
+                                        <td>{{ $etudiant->nom ?? 'N/A'}}</td>
+                                        <td>{{ $etudiant->niveau ?? 'N/A'}}</td>
+                                        <td>{{ $etudiant->created_at->format('Y-m-d') }}</td>
+                                        <td><a href="#" class="icone"><i class="fa-solid fa-info"></i></a></td>
+                               
+                                    
+                               
+                                @empty
+                                <td colspan="4">Aucun étudiant récent.</td>
+                                </tr>
+                                @endforelse
+                            
+                            
                         </tbody>
                        </table>
                     </div>

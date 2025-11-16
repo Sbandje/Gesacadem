@@ -15,7 +15,14 @@
                     <x-navbar/>
                 </div>
                 <div>
-                    <x-dashboard />
+                    <x-dashboard :totalEtudiants="$totalEtudiants" 
+                                    :totalBesoins="$totalBesoins" 
+                                    :totalPaiements="$totalPaiements" 
+                                    :besoinsEnAttente="$besoinsEnAttente" 
+                                    :recentEtudiants="$recentEtudiants" 
+                                    :besoinsUrgents="$besoinsUrgents" 
+                                    :recentPaiements="$recentPaiements" 
+                        />
                 </div>
                 <div class="footer">
                     <x-footer />
